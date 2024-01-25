@@ -4,17 +4,16 @@ import {
   ActionReducerMap,
   createFeatureSelector,
   createSelector,
-  MetaReducer
+  MetaReducer,
 } from '@ngrx/store';
-import { counterReducer, ICountState } from './counter';
+import { COUNTER_KEY, counterReducer, ICountState } from './counter';
 
 export interface State {
-  counter: ICountState
+  [COUNTER_KEY]: ICountState;
 }
 
 export const reducers: ActionReducerMap<State> = {
-  counter: counterReducer
+  [COUNTER_KEY]: counterReducer,
 };
-
 
 export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { clear, countSelector, decrease, increase } from './reducers/counter';
+import { clear, countSelector, decrease, increase, updatedAtSelector } from './reducers/counter';
 import { map } from 'rxjs';
 
 @Component({
@@ -15,7 +15,7 @@ import { map } from 'rxjs';
 })
 export class AppComponent {
   title = 'angular-ngrx';
-  updatedAt?: number;
+  updatedAt$ = this.store.select(updatedAtSelector);
   count$ = this.store.select(countSelector);
   cannotDecrease$ = this.count$.pipe(map((count) => count <= 0));
   equalOne$ = this.count$.pipe(map((count) => count === 1));
@@ -23,17 +23,14 @@ export class AppComponent {
   constructor(private store: Store) {}
 
   increment(): void {
-    this.updatedAt = Date.now();
     this.store.dispatch(increase());
   }
 
   decrement(): void {
-    this.updatedAt = Date.now();
     this.store.dispatch(decrease());
   }
 
   clear(): void {
-    this.updatedAt = Date.now();
     this.store.dispatch(clear());
   }
 }

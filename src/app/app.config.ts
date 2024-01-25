@@ -6,7 +6,13 @@ import { provideStore } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
+import { AppEffects } from './app.effect';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideStore(reducers, { metaReducers }), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }), provideEffects()]
+  providers: [
+    provideRouter(routes),
+    provideStore(reducers, { metaReducers }),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideEffects([AppEffects]),
+  ],
 };

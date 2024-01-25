@@ -6,9 +6,9 @@
   Счетчик: = {{ count$ | async }}
 </p>
 
-<ng-container *ngIf="updatedAt">
+<ng-container *ngIf="updatedAt$ | async">
   <p style="font-size: 30px;">
-    Обновлено: {{ updatedAt | date:'HH:mm:ss dd.MM.yyyy' }}
+    Обновлено: {{ updatedAt$ | async | date:'HH:mm:ss dd.MM.yyyy' }}
   </p>
 </ng-container>
 
