@@ -1,9 +1,9 @@
 <button class="btn" (click)="increment()">+1</button>
-<button class="btn" (click)="decrement()" [disabled]="cannotDecrement">-1</button>
-<button class="btn" (click)="clear()" [disabled]="equalsOne">=1</button>
+<button class="btn" (click)="decrement()" [disabled]="cannotDecrease$ | async">-1</button>
+<button class="btn" (click)="clear()" [disabled]="equalOne$ | async">=1</button>
 
 <p style="font-size: 60px;">
-  Счетчик: = {{ counter }}
+  Счетчик: = {{ count$ | async }}
 </p>
 
 <ng-container *ngIf="updatedAt">
